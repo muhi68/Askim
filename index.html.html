@@ -1,0 +1,102 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Aşkım'a Mektup</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Caveat:wght@500;600&display=swap">
+<style>
+/* Layout: one centered scene on a deep wine night; envelope opens, a handwritten letter rises out */
+:root{
+  --night:#2a0f1c; --night2:#43172b; --paper:#fbeee9; --ink:#4a1d2e;
+  --rose:#d9536f; --gold:#e3b56b; --soft:#f3c6cf;
+  --display:"Cormorant Garamond",Georgia,serif;
+  --hand:"Caveat","Segoe Print","Bradley Hand",cursive;
+  color-scheme:dark;
+}
+html,body{height:100%}
+body{background:radial-gradient(120% 90% at 50% 0%,var(--night2),var(--night));color:var(--paper);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:28px;display:flex;flex-direction:column;align-items:center;overflow-x:hidden;font-family:var(--hand)}
+h1{font-family:var(--display);font-style:italic;font-weight:500;font-size:clamp(28px,7vw,40px);margin:8px 0 4px;color:var(--soft);text-wrap:balance;text-align:center}
+.hint{font-size:20px;color:var(--gold);opacity:.85;margin:0 0 22px;text-align:center}
+.scene{position:relative;width:min(100%,360px);display:flex;flex-direction:column;align-items:center}
+/* envelope */
+.env{position:relative;width:100%;aspect-ratio:3/2;max-width:100%;cursor:pointer;border:0;padding:0;background:none}
+.env:focus-visible{outline:2px dashed var(--gold);outline-offset:6px}
+.back{position:absolute;inset:0;background:#c84462;border-radius:6px}
+.front{position:absolute;inset:0;border-radius:6px;background:
+  linear-gradient(to top right,#e0607c 50%,transparent 50.5%) left/50% 100% no-repeat,
+  linear-gradient(to top left,#e0607c 50%,transparent 50.5%) right/50% 100% no-repeat;z-index:3}
+.flap{position:absolute;left:0;right:0;top:0;height:62%;z-index:4;transform-origin:top;
+  clip-path:polygon(0 0,100% 0,50% 100%);background:#b83a57;transition:transform .7s ease, z-index 0s .35s}
+.seal{position:absolute;left:50%;top:52%;width:54px;height:54px;transform:translate(-50%,-50%);z-index:5;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#f0c98a,var(--gold) 55%,#a87a35);display:grid;place-items:center;
+  color:#7a2a3e;font-size:26px;box-shadow:0 2px 6px #0006;transition:opacity .3s}
+.open .flap{transform:rotateX(180deg);z-index:1}
+.open .seal{opacity:0}
+/* letter */
+.letter{width:100%;background:var(--paper);color:var(--ink);border-radius:4px;padding:26px 22px 22px;
+  box-shadow:0 18px 40px #0007;font-size:22px;line-height:1.35;margin-top:-40%;position:relative;z-index:2;
+  max-height:0;opacity:0;overflow:hidden;transform:translateY(40px);
+  background-image:repeating-linear-gradient(transparent 0 29px,#e9cfd4 29px 30px);background-position:0 54px}
+.open + .letter{max-height:1400px;opacity:1;transform:none;margin-top:18px;transition:max-height 1.2s ease .4s,opacity .8s ease .5s,transform .9s ease .5s,margin .8s ease .3s}
+.letter p{margin:0 0 12px}
+.greet{font-size:30px;font-weight:600;color:var(--rose)}
+.tr{color:var(--rose)}
+.sign{text-align:right;margin-top:6px}
+.ask{text-align:center;font-family:var(--display);font-style:italic;font-size:24px;margin:18px 0 12px;color:var(--ink)}
+.btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;min-height:52px}
+.btns button{font-family:var(--hand);font-size:22px;border-radius:999px;padding:6px 26px;cursor:pointer;border:2px solid var(--rose)}
+.yes{background:var(--rose);color:#fff}
+.no{background:transparent;color:var(--rose);transition:transform .25s}
+.btns button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.thanks{text-align:center;font-size:26px;color:var(--rose);margin-top:10px}
+.heart{position:fixed;bottom:-40px;pointer-events:none;font-size:24px;color:var(--rose);animation:up linear forwards;z-index:20}
+@keyframes up{to{transform:translateY(-115vh) rotate(25deg);opacity:.2}}
+@media (prefers-reduced-motion:reduce){.flap,.open + .letter,.no{transition:none}.heart{display:none}}
+</style>
+
+<h1>Senin için, Aşkım</h1>
+<p class="hint" id="hint">Zarfa dokun ♡</p>
+
+<div class="scene">
+  <button class="env" id="env" aria-label="Mektubu aç">
+    <span class="back"></span><span class="flap"></span><span class="front"></span>
+    <span class="seal">♥</span>
+  </button>
+  <div class="letter" id="letter" aria-live="polite">
+    <p class="greet">Aşkım,</p>
+    <p>Bugün bütün gün dünü düşündüm. Özür dilerim. Gerçekten, tüm kalbimle.</p>
+    <p>Seni kırdığımı biliyorum ve bunu hiçbir zaman istemedim. Farklı davranmalıydım. Hele ki sana, benim için en önemli insana karşı.</p>
+    <p>Sen benim en sevdiğim insansın. Yanında olduğum gibi olabiliyorum ve bunun için çok minnettarım. Bana karşı bu kadar sabırlı olduğun için teşekkür ederim.</p>
+    <p>Yanımda kendini her zaman güvende ve sevilmiş hissetmeni istiyorum. Bunun için elimden geleni yapacağım, söz veriyorum.</p>
+    <p class="tr">Seni çok seviyorum.</p>
+    <p class="sign">Sevgiyle ♥</p>
+    <p class="ask">Beni affediyor musun?</p>
+    <div class="btns" id="btns">
+      <button class="yes" id="yes">Evet ♥</button>
+      <button class="no" id="no">Hayır</button>
+    </div>
+    <p class="thanks" id="thanks" hidden>Teşekkür ederim aşkım. Seni seviyorum ♥</p>
+  </div>
+</div>
+
+<script>
+const env=document.getElementById('env'),hint=document.getElementById('hint');
+env.addEventListener('click',()=>{env.classList.add('open');env.setAttribute('aria-label','Mektup açıldı');hint.textContent='Senin için ♡';});
+const no=document.getElementById('no');let n=0;
+const msgs=['Hayır','Emin misin?','Lütfen 🥺','Aşkım…','Sadece Evet var ♥'];
+function dodge(e){e.preventDefault();n++;
+  const x=(Math.random()*160-80),y=(Math.random()*40-20);
+  no.style.transform=`translate(${x}px,${y}px) scale(${Math.max(.6,1-n*.08)})`;
+  no.textContent=msgs[Math.min(n,msgs.length-1)];}
+no.addEventListener('pointerenter',dodge);no.addEventListener('click',dodge);
+document.getElementById('yes').addEventListener('click',()=>{
+  document.getElementById('btns').hidden=true;document.getElementById('thanks').hidden=false;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  for(let i=0;i<40;i++){const h=document.createElement('span');h.className='heart';h.textContent='♥';
+    h.style.left=Math.random()*100+'vw';h.style.fontSize=(16+Math.random()*26)+'px';
+    h.style.animationDuration=(3+Math.random()*3)+'s';h.style.animationDelay=(Math.random()*1.5)+'s';
+    document.body.appendChild(h);setTimeout(()=>h.remove(),7000);}
+});
+</script>
+
+</body></html>
